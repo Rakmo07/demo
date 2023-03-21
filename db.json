@@ -11,5 +11,9 @@
   ],
   "profile": {
     "name": "typicode"
+  },
+  {
+    "status": 200,
+    "message": "Domain verified, URL available"
   }
 }
