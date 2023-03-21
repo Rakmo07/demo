@@ -12,7 +12,7 @@
   "profile": {
     "name": "typicode"
   },
-  {
+  "validate-domain" : {
     "status": 200,
     "message": "Domain verified, URL available"
   }
