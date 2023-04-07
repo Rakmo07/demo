@@ -1,20 +1,49 @@
-
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicodes",
-     "status": 200
-  },
-  "validate-domain" : {
-    "status": 200,
-    "message": "Domain verified, URL available"
-  }
+	"posts": [
+		{
+			"id": 1,
+			"title": "Post 1"
+		},
+		{
+			"id": 2,
+			"title": "Post 2"
+		},
+		{
+			"id": 3,
+			"title": "Post 3"
+		}
+	],
+	"comments": [
+		{
+			"id": 1,
+			"body": "some comment",
+			"postId": 1
+		},
+		{
+			"id": 2,
+			"body": "some comment",
+			"postId": 1
+		}
+	],
+	"profile": {
+		"name": "typicodes",
+		"status": 200
+	},
+	"validate-domain": {
+		"status": 200,
+		"message": "Domain verified, URL available"
+	},
+	"search_employee": {
+		"status": 200,
+		"message": "Success",
+		"data": {
+			"employee_search": {
+				"first_name": "Keshav",
+				"middle_name": "NA",
+				"last_name": "Taskar",
+				"eductation": "B-Tech",
+				"dob": "12-02-2023"
+			}
+		}
+	}
 }
