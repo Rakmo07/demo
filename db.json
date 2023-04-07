@@ -33,7 +33,7 @@
 		"status": 200,
 		"message": "Domain verified, URL available"
 	},
-	"search_employee": {
+	"search-employee": {
 		"status": 200,
 		"message": "Success",
 		"data": {
