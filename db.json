@@ -1,49 +1,55 @@
 {
-	"posts": [
-		{
-			"id": 1,
-			"title": "Post 1"
-		},
-		{
-			"id": 2,
-			"title": "Post 2"
-		},
-		{
-			"id": 3,
-			"title": "Post 3"
-		}
-	],
-	"comments": [
-		{
-			"id": 1,
-			"body": "some comment",
-			"postId": 1
-		},
-		{
-			"id": 2,
-			"body": "some comment",
-			"postId": 1
-		}
-	],
-	"profile": {
-		"name": "typicodes",
-		"status": 200
-	},
-	"validate-domain": {
-		"status": 200,
-		"message": "Domain verified, URL available"
-	},
-	"search-employee": {
-		"status": 200,
-		"message": "Success",
-		"data": {
-			"employee_search": {
-				"first_name": "Keshav",
-				"middle_name": "NA",
-				"last_name": "Taskar",
-				"eductation": "B-Tech",
-				"dob": "12-02-2023"
-			}
-		}
-	}
+  "swagger": "2.0",
+  "info": {
+    "title": "Jio Associate Trainee",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "host": "",
+  "basePath": "/",
+  "tags": [],
+  "schemes": ["https"],
+  "paths": {
+    "/associate-trainee-view/health-check": {
+      "get": {
+        "summary": "System Health-Check",
+        "description": "This endpoint sends an HTTP GET request to retrieve the health check status for the associate trainee view.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Auth Token Swayam",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "integer", "description": "The status of the response." },
+                "message": { "type": "string", "description": "Additional message." },
+                "api_doc": { "type": "string", "description": "API doc URL." },
+                "build_version": { "type": "string", "description": "Build Version." },
+                "app_run_date": { "type": "string", "description": "Container restart date." }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "integer", "description": "Response status." },
+                "message": { "type": "string", "description": "Error message." }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
 }
