@@ -13,10 +13,12 @@
     "description": "",
     "version": "1.0.0"
   },
-  "host": "",
+  "host": "example.com",
   "basePath": "/",
-  "tags": [],
-  "schemes": ["https"],
+  "schemes": [
+    "https",
+    "http"
+  ],
   "paths": {
     "/associate-trainee-view/health-check": {
       "get": {
@@ -33,33 +35,982 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "",
             "schema": {
               "type": "object",
               "properties": {
-                "status": { "type": "integer", "description": "The status of the response." },
-                "message": { "type": "string", "description": "Additional message." },
-                "api_doc": { "type": "string", "description": "API doc URL." },
-                "build_version": { "type": "string", "description": "Build Version." },
-                "app_run_date": { "type": "string", "description": "Container restart date." }
-              }
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "api_doc": {
+                  "type": "string",
+                  "description": "API doc url"
+                },
+                "build_version": {
+                  "type": "string",
+                  "description": "Build Version"
+                },
+                "app_run_date": {
+                  "type": "string",
+                  "description": "Container restart date."
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "api_doc",
+                "build_version",
+                "app_run_date"
+              ]
             }
           },
           "404": {
-            "description": "Resource not found",
+            "description": "",
             "schema": {
               "type": "object",
               "properties": {
-                "status": { "type": "integer", "description": "Response status." },
-                "message": { "type": "string", "description": "Error message." }
-              }
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
             }
           }
-        }
+        },
+        "tags": [],
+        "deprecated": false
+      }
+    },
+    "/verify/trainee": {
+      "post": {
+        "summary": "Associate Trainee OTP",
+        "description": "This API is used to generate and send a One-Time Password (OTP) for an associate trainee. It accepts a unique prm_id in the request body and returns the status of the OTP generation and delivery process.",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prm_id": {
+                  "type": "string",
+                  "description": "Candidate's PRM ID."
+                }
+              },
+              "required": [
+                "prm_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "is_success": {
+                      "type": "boolean",
+                      "description": "OTP operation status"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "OTP trigger acknowledgment message"
+                    },
+                    "request_id": {
+                      "type": "string",
+                      "description": "OTP request ID"
+                    }
+                  },
+                  "required": [
+                    "is_success",
+                    "msg",
+                    "request_id"
+                  ],
+                  "description": "Data object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "432": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category"
+                    },
+                    "validation_message": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "The error field"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "The error field message."
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "message"
+                        ]
+                      },
+                      "description": "The error validation failure message"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "validation_message"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category "
+                    },
+                    "stack": {
+                      "type": "string",
+                      "description": "The error tracking stacktrace"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "stack"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          }
+        },
+        "tags": [],
+        "deprecated": false
+      }
+    },
+    "/certificate/list": {
+      "post": {
+        "summary": "Associate Certifcates",
+        "description": "This endpoint allows the user to retrieve a list of certificates associated with trainees.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Application specific access token.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "assoicate_certifcates": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "certificate_name": {
+                            "type": "string",
+                            "description": "The name of the certificate."
+                          },
+                          "certificate_access": {
+                            "type": "string",
+                            "description": "The access level of the certificate."
+                          }
+                        },
+                        "required": [
+                          "certificate_name",
+                          "certificate_access"
+                        ]
+                      },
+                      "description": "An array of objects representing the associated certificates."
+                    }
+                  },
+                  "required": [
+                    "assoicate_certifcates"
+                  ],
+                  "description": "Contains the list of associated certificates."
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category "
+                    },
+                    "stack": {
+                      "type": "string",
+                      "description": "The error tracking stacktrace"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "stack"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          }
+        },
+        "tags": [],
+        "deprecated": false
+      }
+    },
+    "/certificate/3631303034/access": {
+      "post": {
+        "summary": "Certificate Preview",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "tags": [],
+        "deprecated": false
+      }
+    },
+    "/verify/otp": {
+      "post": {
+        "summary": "Verify Associate OTP",
+        "description": "An HTTP POST request is made to verify the OTP.",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Cookie",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "request_id": {
+                  "type": "string",
+                  "description": "The ID of the request."
+                },
+                "otp": {
+                  "type": "string",
+                  "description": "The OTP to be verified."
+                }
+              },
+              "required": [
+                "request_id",
+                "otp"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "is_success": {
+                      "type": "boolean",
+                      "description": "Verification operation status"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Candidate Name"
+                    },
+                    "prm_id": {
+                      "type": "string",
+                      "description": "Candidate's PRM ID"
+                    },
+                    "attempts_left": {
+                      "type": "null",
+                      "description": "OTP attempts"
+                    },
+                    "time_exceeded": {
+                      "type": "boolean",
+                      "description": "OTP time exceeded"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "OTP verification related message."
+                    }
+                  },
+                  "required": [
+                    "is_success",
+                    "name",
+                    "prm_id",
+                    "attempts_left",
+                    "time_exceeded",
+                    "message"
+                  ],
+                  "description": "Data object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "data"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "432": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category"
+                    },
+                    "validation_message": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "The error field"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "The error field message."
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "message"
+                        ]
+                      },
+                      "description": "The error validation failure message"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "validation_message"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category "
+                    },
+                    "stack": {
+                      "type": "string",
+                      "description": "The error tracking stacktrace"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "stack"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          }
+        },
+        "tags": [],
+        "deprecated": false
+      }
+    },
+    "/admin/upload/master-data": {
+      "post": {
+        "summary": "Upload Master Data",
+        "description": "This endpoint allows administrators to upload master data using a POST request.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Swayam application token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "upload_status": {
+                      "type": "string",
+                      "description": "Upload status flag"
+                    },
+                    "upload_ack_messsage": {
+                      "type": "string",
+                      "description": "Upload operation message."
+                    }
+                  },
+                  "required": [
+                    "upload_status",
+                    "upload_ack_messsage"
+                  ],
+                  "description": "Data object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "data"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "429": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                }
+              },
+              "required": [
+                "status",
+                "message"
+              ]
+            }
+          },
+          "432": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category"
+                    },
+                    "validation_message": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "The error field"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "The error field message."
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "message"
+                        ]
+                      },
+                      "description": "The error validation failure message"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "validation_message"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "description": "The status of the response."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Any additional message related to the response."
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The error category "
+                    },
+                    "stack": {
+                      "type": "string",
+                      "description": "The error tracking stacktrace"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "stack"
+                  ],
+                  "description": "Error object"
+                }
+              },
+              "required": [
+                "status",
+                "message",
+                "error"
+              ]
+            }
+          }
+        },
+        "tags": [],
+        "deprecated": false
       }
     }
   },
-  "definitions": {}
+  "definitions": {},
+  "securityDefinitions": {}
 }
 
 }
